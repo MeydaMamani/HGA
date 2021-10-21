@@ -1,19 +1,19 @@
-<?php 
-  require ('abrir.php');    
+<?php
+  require ('abrir.php');
   if (isset($_POST['Buscar'])) {
     global $conex;
     include('./base.php');
     include('consulta_bateria_completa.php');
     $row_cont=0; $correctos=0; $incorrectos=0;
-    while ($consulta = sqlsrv_fetch_array($consulta2)){  
+    while ($consulta = sqlsrv_fetch_array($consulta2)){
       $row_cont++;
       if ($consulta['CAPTADA'] == $consulta['TMZ_ANEMIA'] AND $consulta['CAPTADA'] == $consulta['SIFILIS'] AND $consulta['CAPTADA'] == $consulta['VIH'] AND $consulta['CAPTADA'] == $consulta['BACTERIURIA']) {
         $correctos++;
-      } 
+      }
       else{
         $incorrectos++;
       }
-    }  
+    }
   ?>
         <div class="container">
             <div class="text-center p-3">
@@ -26,7 +26,7 @@
                     <li class="list-group-item font-14">Correctos <span class="badge bg-success rounded-pill correcto"><?php echo $correctos; ?></span></li>
                     <li class="list-group-item font-14">Incorrectos <span class="badge bg-danger rounded-pill incorrecto"><?php echo $incorrectos; ?></span></li>
                     <li class="list-group-item font-14">Avance <span class="badge bg-primary rounded-pill avance">
-                      <?php 
+                      <?php
                         if($correctos == 0 and $row_cont == 0){
                           echo '0 %';
                         }else{
@@ -40,7 +40,7 @@
             </div>
             <div class="row mb-3">
               <div class="col-lg-12 text-center">
-                <button type="submit" name="Limpiar" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalResumen"><i class="fa fa-bar-chart"></i> Cuadro Resumen</button>
+                <!-- <button type="submit" name="Limpiar" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalResumen"><i class="fa fa-bar-chart"></i> Cuadro Resumen</button> -->
                 <button type="submit" name="Limpiar" class="btn btn-outline-danger btn-sm btn_information" data-bs-toggle="modal" data-bs-target="#ModalInformacion"><i class="fa fa-list"></i> Informacion</button>
                 <button type="submit" name="Limpiar" class="btn btn-outline-secondary btn-sm 1btn_buscar" onclick="location.href='bateria_completa.php';"><i class="fa fa-arrow-left"></i> Regresar</button>
               </div>
@@ -54,7 +54,7 @@
                     <button type="submit" id="export_data" name="exportarCSV" class="btn btn-outline-success btn-sm m-2 "><i class="fa fa-print"></i> Imprimir CSV</button>
                 </form>
             </div>
-            
+
             <div class="col-12 table-responsive table_no_fed">
               <table id="demo-foo-addrow2" class="table table-hover" data-page-size="20" data-limit-navigation="10">
                 <thead>
@@ -86,10 +86,10 @@
                   </div>
                 </div>
                 <tbody>
-                  <?php 
+                  <?php
                     include('consulta_bateria_completa.php');
                     $i=1;
-                    while ($consulta = sqlsrv_fetch_array($consulta2)){  
+                    while ($consulta = sqlsrv_fetch_array($consulta2)){
                       $newdate = $consulta['Fecha_Nacimiento_Paciente'] -> format('d/m/y');
                       $newdate2 = $consulta['CAPTADA'] -> format('d/m/y');
                       if(is_null ($consulta['TMZ_ANEMIA']) ){
@@ -119,7 +119,7 @@
 
                       if ($consulta['CAPTADA'] == $consulta['TMZ_ANEMIA'] AND $consulta['CAPTADA'] == $consulta['SIFILIS'] AND $consulta['CAPTADA'] == $consulta['VIH'] AND $consulta['CAPTADA'] == $consulta['BACTERIURIA']) {
                         $resultado = 'CORRECTO';
-                      } 
+                      }
                       else{
                         $resultado = 'INCORRECTO';
                       }
@@ -132,23 +132,23 @@
                       <td class="align-middle"><?php echo $consulta['TIPO_DOC']; ?></td>
                       <td class="align-middle"><?php echo $consulta['DOCUMENTO']; ?></td>
                       <td class="align-middle"><?php echo $newdate; ?></td>
-                      <td class="align-middle"><?php echo $newdate2; ?></td>                      
+                      <td class="align-middle"><?php echo $newdate2; ?></td>
                       <td class="align-middle"><?php echo $newdate7; ?></td>
                       <td class="align-middle" id="fields_bateria_body"><?php echo $newdate3; ?></td>
                       <td class="align-middle" id="fields_bateria_body"><?php echo $newdate4; ?></td>
                       <td class="align-middle" id="fields_bateria_body"><?php echo $newdate5; ?></td>
                       <td class="align-middle" id="fields_bateria_body"><?php echo $newdate6; ?></td>
-                      <td class="align-middle"><?php 
+                      <td class="align-middle"><?php
                         if ($resultado == 'CORRECTO'){
-                          echo "<span class='badge bg-correct'>$resultado</span>"; 
+                          echo "<span class='badge bg-correct'>$resultado</span>";
                         }else{
-                          echo "<span class='badge bg-incorrect'>$resultado</span>"; 
+                          echo "<span class='badge bg-incorrect'>$resultado</span>";
                         }
                         ?>
                       </td>
                     </tr>
                   <?php
-                      ;}              
+                      ;}
                       include("cerrar.php");
                   ?>
                 </tbody>
@@ -195,36 +195,36 @@
                   </div>
                 </div>
                 <tbody>
-                  <?php 
+                  <?php
                     include('consulta_fed_bateria_completa.php');
                     $i_fed=1; $correctos_fed=0; $incorrectos_fed=0;
-                    while ($consulta_fed = sqlsrv_fetch_array($consulta_fed2)){  
-                      
+                    while ($consulta_fed = sqlsrv_fetch_array($consulta_fed2)){
+
                         // $resultado = 'CORRECTO';
                         if($consulta_fed['TIPO_DOC'] == 'DNI'){
                           $newdate = $consulta_fed['Fecha_Nacimiento_Paciente'] -> format('d/m/y');
-    
+
                           $newdate2 = $consulta_fed['CAPTADA'] -> format('d/m/y');
                           if(is_null ($consulta_fed['TMZ_ANEMIA']) ){
                               $newdate3 = '  -'; }
                             else{
                           $newdate3 = $consulta_fed['TMZ_ANEMIA'] -> format('d/m/y');}
-    
+
                           if(is_null ($consulta_fed['SIFILIS']) ){
                               $newdate4 = '  -'; }
                             else{
                           $newdate4 = $consulta_fed['SIFILIS'] -> format('d/m/y');}
-    
+
                           if(is_null ($consulta_fed['VIH']) ){
                               $newdate5 = '  -'; }
                             else{
                           $newdate5 = $consulta_fed['VIH'] -> format('d/m/y');}
-    
+
                           if(is_null ($consulta_fed['BACTERIURIA']) ){
                               $newdate6 = '  -'; }
                             else{
                           $newdate6 = $consulta_fed['BACTERIURIA'] -> format('d/m/y');}
-    
+
                           if(is_null ($consulta_fed['TMZ_VIF']) ){
                               $newdate7 = '  -'; }
                             else{
@@ -233,12 +233,12 @@
                           if ($consulta_fed['CAPTADA'] == $consulta_fed['TMZ_ANEMIA'] AND $consulta_fed['CAPTADA'] == $consulta_fed['SIFILIS'] AND $consulta_fed['CAPTADA'] == $consulta_fed['VIH'] AND $consulta_fed['CAPTADA'] == $consulta_fed['BACTERIURIA']) {
                             $resultado = 'CORRECTO';
                             $correctos_fed++;
-                          } 
+                          }
                           else{
                             $resultado = 'INCORRECTO';
                             $incorrectos_fed++;
                           }
-  
+
                   ?>
                     <tr class="text-center font-12" id="table_fed">
                       <td class="align-middle" id="cantidad"><?php echo $i_fed++; ?></td>
@@ -248,25 +248,25 @@
                       <td class="align-middle"><?php echo $consulta_fed['TIPO_DOC']; ?></td>
                       <td class="align-middle"><?php echo $consulta_fed['DOCUMENTO']; ?></td>
                       <td class="align-middle"><?php echo $newdate; ?></td>
-                      <td class="align-middle"><?php echo $newdate2; ?></td>                      
+                      <td class="align-middle"><?php echo $newdate2; ?></td>
                       <td class="align-middle"><?php echo $newdate7; ?></td>
                       <td class="align-middle" id="color_fed_body"><?php echo $newdate3; ?></td>
                       <td class="align-middle" id="color_fed_body"><?php echo $newdate4; ?></td>
                       <td class="align-middle" id="color_fed_body"><?php echo $newdate5; ?></td>
                       <td class="align-middle" id="color_fed_body"><?php echo $newdate6; ?></td>
-                      <td class="align-middle"><?php 
+                      <td class="align-middle"><?php
                         if ($resultado == 'CORRECTO'){
-                          echo "<span class='badge bg-correct'>$resultado</span>"; 
+                          echo "<span class='badge bg-correct'>$resultado</span>";
                         }else{
-                          echo "<span class='badge bg-incorrect'>$resultado</span>"; 
+                          echo "<span class='badge bg-incorrect'>$resultado</span>";
                         }
                          ?>
                       </td>
                     </tr>
                   <?php
-                          
+
                         }
-                      }              
+                      }
                       include("cerrar.php");
                   ?>
                 </tbody>
@@ -309,10 +309,10 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <?php 
-                          include('consulta_resumen_bateria.php'); 
+                        <?php
+                          include('consulta_resumen_bateria.php');
                           $i=1;
-                          while ($consulta = sqlsrv_fetch_array($resum2)){  
+                          while ($consulta = sqlsrv_fetch_array($resum2)){
                         ?>
                           <tr style="font-size: 11px; text-align: center;">
                             <td class="align-middle"><?php echo $i++; ?></td>
@@ -390,7 +390,7 @@
       e.preventDefault();
       addrow2.trigger('footable_filter', {filter: $(this).val()});
   });
-        
+
   var addrow2 = $('#demo-foo-addrow');
   addrow2.footable().on('click', '.delete-row-btn', function() {
       var footable = addrow.data('footable');
@@ -429,7 +429,7 @@
                             'rgb(74, 135, 72,0.5)', '#98f2c4', '#98ddf2', '#d9daf9',
                             '#f298bd', '#ce9898', 'rgb(66, 134, 244,0.5)', '#e5b63280',
                             'rgb(229, 89, 50,0.5)', '#a0e53280', 'rgb(74, 135, 72,0.5)', '#98f2c4',
-                            '#98ddf2', '#d9daf9', '#f298bd', '#ce9898', 
+                            '#98ddf2', '#d9daf9', '#f298bd', '#ce9898',
                             'rgb(66, 134, 244,0.5)', '#e5b63280', 'rgb(229, 89, 50,0.5)', '#a0e53280',
                             'rgb(66, 134, 244,0.5)', '#e5b63280', 'rgb(229, 89, 50,0.5)',
                         ]
@@ -455,14 +455,6 @@
             }
         });
 
-  // function datosParaGrafico(){
-  //   $.ajax({
-  //     url: 'consulta_grafica_bateria_completa.php',
-  //     type: 'POST',
-  //   }).done(function(resp){
-  //     console.log(resp);
-  //   })
-  // }
 </script>
 </body>
 </html>

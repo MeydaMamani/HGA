@@ -15,13 +15,7 @@
         if (strlen($mes) == 1){ $mes2 = '0'.$mes;  }else{ $mes2 = $mes;
         }
 
-        if ($red_1 == 1) { $red = 'DANIEL ALCIDES CARRION'; }
-        elseif ($red_1 == 2) { $red = 'OXAPAMPA'; }
-        elseif ($red_1 == 3) { $red = 'PASCO';  }
-        elseif ($red_1 == 4) { $redt = 'PASCO'; }
-        
-        
-        if(($red_1 == 1 or $red_1 == 2 or $red_1 == 3) and $dist_1 == 'TODOS'){
+        if(($red_1 != 'TODOS') and $dist_1 == 'TODOS'){
             $resultado = "SELECT Provincia_Establecimiento PROVINCIA,Distrito_Establecimiento DISTRITO,Nombre_Establecimiento IPRESS,
                             Abrev_Tipo_Doc_Paciente TIPO_DOC, Numero_Documento_Paciente DOCUMENTO, Fecha_Nacimiento_Paciente,  
                             GES_CAPT_OPO CAPTADA,TMZ_ANEMIA, SIFILIS, VIH,BACTERIURIA,TMZ_VIF, PLANDEPARTO,PERFILOBSTETRICO,REGISTRADO_EL                          
@@ -39,13 +33,13 @@
                             Min(CASE WHEN (a.Codigo_Item ='U1692' AND a.Tipo_Diagnostico='D' )THEN A.Fecha_Atencion ELSE NULL END)'PLANDEPARTO',
                             Min(CASE WHEN ((a.Codigo_Item IN('Z3491','Z3591') AND Tipo_Diagnostico='D' AND Valor_Lab='1') )THEN A.Fecha_Registro ELSE NULL END)'REGISTRADO_EL'
                           FROM T_CONSOLIDADO_NUEVA_TRAMA_HISMINSA_DETALLADO A
-                          WHERE (anio in ('2021') and Id_Genero='F' and mes ='$mes' and Provincia_Establecimiento='$red')
+                          WHERE (anio in ('2021') and Id_Genero='F' and mes ='$mes' and Provincia_Establecimiento='$red_1')
                           GROUP BY Provincia_Establecimiento, Distrito_Establecimiento, Nombre_Establecimiento, Abrev_Tipo_Doc_Paciente,
                           Numero_Documento_Paciente, Fecha_Nacimiento_Paciente ) b
                           where GES_CAPT_OPO is not null";
   
         }
-        else if ($red_1 == 4 and $dist_1 == 'TODOS') {
+        else if ($red_1 == 'TODOS' && $dist_1 == 'TODOS') {
             $dist = '';
             $resultado = "SELECT Provincia_Establecimiento PROVINCIA,Distrito_Establecimiento DISTRITO,Nombre_Establecimiento IPRESS,
                           Abrev_Tipo_Doc_Paciente TIPO_DOC, Numero_Documento_Paciente DOCUMENTO, Fecha_Nacimiento_Paciente,  
@@ -90,7 +84,7 @@
                             Min(CASE WHEN (a.Codigo_Item ='U1692' AND a.Tipo_Diagnostico='D' )THEN A.Fecha_Atencion ELSE NULL END)'PLANDEPARTO',
                             Min(CASE WHEN ((a.Codigo_Item IN('Z3491','Z3591') AND Tipo_Diagnostico='D' AND Valor_Lab='1') )THEN A.Fecha_Registro ELSE NULL END)'REGISTRADO_EL'
                           FROM T_CONSOLIDADO_NUEVA_TRAMA_HISMINSA_DETALLADO A
-                          WHERE (anio in ('2021') and Id_Genero='F' and mes ='$mes' and Provincia_Establecimiento='$red' and Distrito_Establecimiento='$dist')
+                          WHERE (anio in ('2021') and Id_Genero='F' and mes ='$mes' and Provincia_Establecimiento='$red_1' and Distrito_Establecimiento='$dist')
                           GROUP BY Provincia_Establecimiento, Distrito_Establecimiento, Nombre_Establecimiento, Abrev_Tipo_Doc_Paciente,
                           Numero_Documento_Paciente, Fecha_Nacimiento_Paciente ) b
                           where GES_CAPT_OPO is not null";

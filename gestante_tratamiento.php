@@ -13,18 +13,26 @@
                             <div class="row">
                                 <div class="col-md">
                                     <p style="font-size: 13px;" class="text-start"><b>Ingrese Red: </b></p>
-                                    <select class="select_gestante form-select" name="red" id="red" onchange="cambia_distrito()" aria-label="Default select example">
-                                        <option value="0" selected>Seleccione Red</option>
-                                        <option value="1">DANIEL ALCIDES CARRION</option> 
-                                        <option value="2">OXAPAMPA</option>
-                                        <option value="3">PASCO</option>
-                                        <option value="4">TODOS</option>
+                                    <select class="select_gestante form-select js-example-basic-single" onchange="cambia_distrito()" name="red" id="red" aria-label="Default select example">
+                                        <option value="-">Seleccione Red</option>
+                                    <?php
+                                        require('abrir.php');
+                                        $resul_red = "SELECT DISTINCT(Provincia) FROM MAESTRO_HIS_ESTABLECIMIENTO WHERE disa='ayacucho'";
+                                        $resul_red = sqlsrv_query($conn, $resul_red);
+                                        while ($consulta = sqlsrv_fetch_array($resul_red)){
+                                            $Provincia = $consulta['Provincia'];
+                                    ?>
+                                        <option value="<?php echo $Provincia ?>"><?php echo $Provincia?></option>
+                                    <?php
+                                        }
+                                    ?>
+                                        <option value="TODOS">TODOS</option>
                                     </select>
                                 </div>
                                 <div class="col-md text-mobile">
                                     <p style="font-size: 13px;" class="text-start"><b>Ingrese Distrito: </b></p>
                                     <select class="select_gestante form-select" name="distrito" id="distrito" aria-label="Default select example">
-                                        <option value="-">-</option>
+                                        <option value="-">Seleccione Distrito</option>
                                     </select>
                                 </div>
                             </div><br>
@@ -48,7 +56,7 @@
                                 </div>
                             </div><br>
                             <div class="col-12 text-center">
-                                <button type="button" name="Buscar" class="btn text-white" id="btn_buscar" placeholder="Buscar" style="background: #337ab7;"><i class="fa fa-search"></i> Buscar</button>
+                                <button name="Buscar" class="btn text-white" type="button" id="btn_buscar" placeholder="Buscar" style="background: #337ab7;"><i class="fa fa-search"></i> Buscar</button>
                             </div>
                         </form>
                     </div>
@@ -63,56 +71,36 @@
         var red = $("#red").val();
         var distrito = $("#distrito").val();
         var mes =$("#mes").val();
-        if (red != 0 && distrito!='-' && mes!=''){
+
+        if (red != '-' && distrito!='-' && mes!=''){
             document.getElementById("btn_buscar").type = "submit";
-        }else if(red == 0){
+        }else if(red == '-'){
             toastr.error('Seleccione una Red', null, {"closeButton": true, "progressBar": true});
         }else if(distrito == '-'){
             toastr.error('Seleccione un Distrito', null, {"closeButton": true, "progressBar": true});
         }
     });
 </script>
-<script language="javascript">  
-  var distritos_1=new Array("-","CHACAYAN","GOYLLARISQUIZGA","PAUCAR","SAN PEDRO DE PILLAO","SANTA ANA DE TUSI","TAPUC","VILCABAMBA","YANAHUANCA","TODOS");
-  var distritos_2=new Array("-","CHONTABAMBA","CONSTITUCIÓN","HUANCABAMBA","OXAPAMPA","PALCAZU","POZUZO","PUERTO BERMUDEZ","VILLA RICA","TODOS");
-  var distritos_3=new Array("-","CHAUPIMARCA","HUACHON","HUARIACA","HUAYLLAY","NINACACA","PALLANCHACRA","PAUCARTAMBO","SAN FCO DE ASIS DE YARUSYACAN","SIMON BOLIVAR","TICLACAYAN","TINYAHUARCO","VICCO","YANACANCHA","TODOS");
-  var distritos_4=new Array("TODOS");
-
-  var todasDistritos = [
-    [],
-    distritos_1,
-    distritos_2,
-    distritos_3,
-    distritos_4,
-  ];
-
-  function cambia_distrito(){ 
-    //tomo el valor del select del pais elegido 
-    var red 
-    red = document.f1.red[document.f1.red.selectedIndex].value 
-    //miro a ver si el pais está definido 
-    if (red != 0) { 
-        //si estaba definido, entonces coloco las opciones de la provincia correspondiente. 
-        //selecciono el array de provincia adecuado 
-        mis_distritos=todasDistritos[red]
-        //calculo el numero de provincias 
-        num_distritos = mis_distritos.length 
-        //marco el número de provincias en el select 
-        document.f1.distrito.length = num_distritos 
-        //para cada provincia del array, la introduzco en el select 
-        for(i=0;i<num_distritos;i++){ 
-          document.f1.distrito.options[i].value=mis_distritos[i] 
-          document.f1.distrito.options[i].text=mis_distritos[i] 
-        } 
-    }else{ 
-        //si no había provincia seleccionada, elimino las provincias del select 
-        document.f1.distrito.length = 1 
-        //coloco un guión en la única opción que he dejado 
-        document.f1.distrito.options[0].value = "-" 
-        document.f1.distrito.options[0].text = "-" 
-    } 
-    //marco como seleccionada la opción primera de provincia 
-    document.f1.distrito.options[0].selected = true 
+<script>
+  function cambia_distrito(){     
+    var $red = $("#red").val();
+    $.ajax({
+        url: 'distritos.php?id='+$red,
+        method: 'GET',
+        success: function(data) {
+            var distritos = data;
+            var expresionRegular = /\s*,\s*/;
+            var listaDistritos = distritos.split(expresionRegular);
+            var indice = listaDistritos.length-1;
+            listaDistritos[indice] = 'TODOS';
+            num_distritos = listaDistritos.length 
+            document.f1.distrito.length = num_distritos
+            for(i=0;i<num_distritos;i++){ 
+                document.f1.distrito.options[i].value=listaDistritos[i] 
+                document.f1.distrito.options[i].text=listaDistritos[i] 
+            } 
+        }
+    })
   }
 </script>
 </body>

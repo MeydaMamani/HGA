@@ -91,7 +91,7 @@
     //     document.f1.distrito.options[0].text = "Seleccione Distrito" 
     // }
     $.ajax({
-        url: 'bateria_completa_distrito.php?id='+$red,
+        url: 'distritos.php?id='+$red,
         method: 'GET',
         success: function(data) {
             var distritos = data;

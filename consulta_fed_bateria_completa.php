@@ -39,8 +39,8 @@
                             Min(CASE WHEN (a.Codigo_Item ='80055.01' AND  (Codigo_Unico NOT IN ('000000979','000000980','000000981') ) AND a.Tipo_Diagnostico='D' )THEN A.Fecha_Atencion ELSE NULL END)'PERFILOBSTETRICO',
                             Min(CASE WHEN (a.Codigo_Item ='U1692' AND  (Codigo_Unico NOT IN ('000000979','000000980','000000981') ) AND a.Tipo_Diagnostico='D' )THEN A.Fecha_Atencion ELSE NULL END)'PLANDEPARTO',
                             Min(CASE WHEN ((a.Codigo_Item IN('Z3491','Z3591') AND  (Codigo_Unico NOT IN ('000000979','000000980','000000981') ) AND Tipo_Diagnostico='D' AND Valor_Lab='1') )THEN A.Fecha_Registro ELSE NULL END)'REGISTRADO_EL'
-                          FROM T_CONSOLIDADO_NUEVA_TRAMA_HISMINSA A
-                          WHERE (anio in ('2021') and Genero='f' and mes ='$mes' and Provincia_Establecimiento='$red')
+                          FROM T_CONSOLIDADO_NUEVA_TRAMA_HISMINSA_DETALLADO A
+                          WHERE (anio in ('2021') and Id_Genero='F' and mes ='$mes' and Provincia_Establecimiento='$red')
                           GROUP BY Provincia_Establecimiento, Distrito_Establecimiento, Nombre_Establecimiento, Abrev_Tipo_Doc_Paciente,
                           Numero_Documento_Paciente, Fecha_Nacimiento_Paciente ) b
                           where GES_CAPT_OPO is not null";
@@ -64,8 +64,8 @@
                           Min(CASE WHEN (a.Codigo_Item ='80055.01' AND  (Codigo_Unico NOT IN ('000000979','000000980','000000981') ) AND a.Tipo_Diagnostico='D' )THEN A.Fecha_Atencion ELSE NULL END)'PERFILOBSTETRICO',
                           Min(CASE WHEN (a.Codigo_Item ='U1692' AND  (Codigo_Unico NOT IN ('000000979','000000980','000000981') ) AND a.Tipo_Diagnostico='D' )THEN A.Fecha_Atencion ELSE NULL END)'PLANDEPARTO',
                           Min(CASE WHEN ((a.Codigo_Item IN('Z3491','Z3591') AND  (Codigo_Unico NOT IN ('000000979','000000980','000000981') ) AND Tipo_Diagnostico='D' AND Valor_Lab='1') )THEN A.Fecha_Registro ELSE NULL END)'REGISTRADO_EL'
-                        FROM T_CONSOLIDADO_NUEVA_TRAMA_HISMINSA A
-                        WHERE (anio in ('2021') and Genero='f' and mes ='$mes')
+                        FROM T_CONSOLIDADO_NUEVA_TRAMA_HISMINSA_DETALLADO A
+                        WHERE (anio in ('2021') and Id_Genero='F' and mes ='$mes')
                         GROUP BY Provincia_Establecimiento, Distrito_Establecimiento, Nombre_Establecimiento, Abrev_Tipo_Doc_Paciente,
                         Numero_Documento_Paciente, Fecha_Nacimiento_Paciente ) b
                         where GES_CAPT_OPO is not null";
@@ -88,8 +88,8 @@
                           Min(CASE WHEN (a.Codigo_Item ='80055.01' AND a.Tipo_Diagnostico='D' )THEN A.Fecha_Atencion ELSE NULL END)'PERFILOBSTETRICO',
                           Min(CASE WHEN (a.Codigo_Item ='U1692' AND a.Tipo_Diagnostico='D' )THEN A.Fecha_Atencion ELSE NULL END)'PLANDEPARTO',
                           Min(CASE WHEN ((a.Codigo_Item IN('Z3491','Z3591') AND Tipo_Diagnostico='D' AND Valor_Lab='1') )THEN A.Fecha_Registro ELSE NULL END)'REGISTRADO_EL'
-                        FROM T_CONSOLIDADO_NUEVA_TRAMA_HISMINSA A
-                        WHERE (anio in ('2021') and Genero='f' and mes ='$mes' and Provincia_Establecimiento='$red' AND Distrito_Establecimiento='$dist')
+                        FROM T_CONSOLIDADO_NUEVA_TRAMA_HISMINSA_DETALLADO A
+                        WHERE (anio in ('2021') and Id_Genero='F' and mes ='$mes' and Provincia_Establecimiento='$red' AND Distrito_Establecimiento='$dist')
                         GROUP BY Provincia_Establecimiento, Distrito_Establecimiento, Nombre_Establecimiento, Abrev_Tipo_Doc_Paciente,
                         Numero_Documento_Paciente, Fecha_Nacimiento_Paciente ) b
                         where GES_CAPT_OPO is not null";

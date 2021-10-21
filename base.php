@@ -45,7 +45,7 @@
 </head>
 <body>
 	<header>
-		<div style="margin: 10px 30px;">
+		<!-- <div style="margin: 10px 30px;">
 			<div class="row">
 			<div class="col-2">
 				<img src="./img/diresa1.jpg" class="img_diresa" alt="Logotipo Diresa">
@@ -54,7 +54,7 @@
 				<img src="./img/oeit.png" class="img_oeit" width="240" alt="Logotipo OEIT">
 			</div>
 			</div>
-		</div>
+		</div> -->
 		<div class="menu_bar">
 			<a href="#" class="bt-menu"><span class="icon-menu"></span>Menu</a>
 		</div>
@@ -80,7 +80,7 @@
 						<li><a href="gestante_usuarias_nuevas.php">Gestante Usuarias Nuevas con TMZ de Violencia (CG VI-02)<span class="icon-dot"></span></a></li>
 					</ul>
 				</li>
-				<li class="submenu">
+				<!-- <li class="submenu">
 					<a href="#"><span class="icon-svg"></span>Covid-19<span class="caret icon-arrow-down6"></span></a>
 					<ul class="children">
 						<li><a href="vacuna_covid.php">Consulta tu Vacunación<span class="icon-dot"></span></a></li>
@@ -88,24 +88,24 @@
 						<li><a href="https://drive.google.com/file/d/1qR2KiCh3DRyp1OyiJZ2xjBJMpZQxmaSi/view" target="_blank">Descargue su Consentimiento <span class="icon-dot"></span></a></li>
 						<li><a href="sis_covid.php">Sis-Covid<span class="icon-dot"></span></a></li>
 					</ul>
-				</li>
-				<li class="submenu">
+				</li> -->
+				<!-- <li class="submenu">
 					<a href="#"><span class="icon-user"></span>Paciente<span class="caret icon-arrow-down6"></span></a>
 					<ul class="children">
 						<li><a href="detalle_paciente.php">Detalle Paciente<span class="icon-dot"></span></a></li>
 					</ul>
-				</li>
-				<li class="submenu">
+				</li> -->
+				<!-- <li class="submenu">
 					<a href="solicitud.php"><i class="fa fa-address-card"></i> Solicitud<span class="caret icon-arrow-down6"></span></a>
-				</li>
-				<li class="submenu">
+				</li> -->
+				<!-- <li class="submenu">
 					<a href="#"><i class="fa fa-calculator"></i> Seguimiento<span class="caret icon-arrow-down6"></span></a>
 					<ul class="children">
 						<li><a href="seguimiento_neonatal.php">Seguimiento Tamizaje Neonatal<span class="icon-dot"></span></a></li>
 						<li><a href="cant_prof_EPP.php">Cantidad Profesional EPP (2020 FED)<span class="icon-dot"></span></a></li>
 						<li><a href="desparacitacion.php">Desparacitación<span class="icon-dot"></span></a></li>
 					</ul>
-				</li>
+				</li> -->
 				<li class="submenu">
 					<a href="#" style="color: #d8e24e;"><i class="fa fa-graduation-cap"></i> Educación<span class="caret icon-arrow-down6"></span></a>
 					<ul class="children">

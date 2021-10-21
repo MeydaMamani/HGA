@@ -1,7 +1,7 @@
 <?php
     include('./base.php');
 ?>
-<div class="col-12 text-center mb-4">
+<!-- <div class="col-12 text-center mb-4">
     <div class="pop-up-wrap">
         <div class="pop-up-title">
             <h2>DEIT</h2>
@@ -18,4 +18,7 @@
             <div class="line"></div>
         </div>
     </div>
+</div> -->
+<div class="col-12 text-center mb-4">
+    <img src="img/hga.png" alt="" style="width: 100%;">
 </div>

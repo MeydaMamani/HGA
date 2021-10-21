@@ -31,7 +31,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <p style="font-size: 13px;" class="text-start"><b>Seleccione Establecimiento: </b></p>
-                                    <select class="select_gestante form-select js-example-basic-single" name="id_establecimiento" id="id_establecimiento" aria-label="Default select example">
+                                    <p>Proximamente se estará habilitando esta opción</p>
+                                    <!-- <select class="select_gestante form-select js-example-basic-single" name="id_establecimiento" id="id_establecimiento" aria-label="Default select example">
                                         <option value="-">Seleccione Establecimiento</option>
                                         <?php
                                             require('abrir.php');
@@ -51,7 +52,7 @@
                                         <?php
                                             }
                                         ?>
-                                    </select>
+                                    </select> -->
                                 </div>
                                 <div class="col-md-6">
                                     <p style="font-size: 13px;" class="text-start"><b>Seleccione mes a evaluar: </b></p>

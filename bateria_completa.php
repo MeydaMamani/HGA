@@ -89,8 +89,7 @@
         $('#mes').select2();
 	});
 </script>
-<script>
-    
+<script>    
   function cambia_distrito(){  
     $("#distrito").empty();   
     var $red = $("#red").val();

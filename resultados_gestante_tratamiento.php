@@ -172,7 +172,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="11">
+                            <td colspan="15">
                                 <div class="">
                                     <ul class="pagination"></ul>
                                 </div>

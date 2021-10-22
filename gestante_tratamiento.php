@@ -82,7 +82,15 @@
     });
 </script>
 <script>
-  function cambia_distrito(){     
+    $(document).ready(function(){
+		$('#red').select2();
+        $('#distrito').select2();
+        $('#mes').select2();
+	});
+</script>
+<script>
+  function cambia_distrito(){ 
+    $("#distrito").empty();      
     var $red = $("#red").val();
     $.ajax({
         url: 'distritos.php?id='+$red,

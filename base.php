@@ -19,7 +19,6 @@
 
 	<!-- JQUERY -->
 	<script src="./js/jquery-3.6.0.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>	
 	
 	<!-- archivos creados -->
@@ -31,13 +30,15 @@
 	<!-- link paginacion -->
 	<link rel="stylesheet" href="./plugin/footable/css/footable.core.css">
 	<link rel="stylesheet" href="./css/style_footable.css">
+	<script src="./plugin/footable/js/footable-init.js"></script>
+	<script src="./plugin/footable/js/footable.all.min.js"></script>
 	
 	<!-- link chartjs -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
 	
 	<!-- select2 para buscardor -->
-	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="./css/select2.css">
+	<script src="./js/select2.js"></script>
 
 	<!-- notificaciones toastr -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">

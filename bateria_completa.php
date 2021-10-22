@@ -13,7 +13,7 @@
                             <div class="row">
                                 <div class="col-md">
                                     <p style="font-size: 13px;" class="text-start"><b>Ingrese Red: </b></p>
-                                    <select class="select_gestante form-select js-example-basic-single" onchange="cambia_distrito()" name="red" id="red" aria-label="Default select example">
+                                    <select class="select_gestante form-select" onchange="cambia_distrito()" name="red" id="red" aria-label="Default select example">
                                         <option value="-">Seleccione Red</option>
                                     <?php
                                         require('abrir.php');
@@ -83,13 +83,17 @@
     });
 </script>
 <script>
-  function cambia_distrito(){     
+    $(document).ready(function(){
+		$('#red').select2();
+        $('#distrito').select2();
+        $('#mes').select2();
+	});
+</script>
+<script>
+    
+  function cambia_distrito(){  
+    $("#distrito").empty();   
     var $red = $("#red").val();
-    // if($red == '-'){
-    //     document.f1.distrito.length = 1 
-    //     document.f1.distrito.options[0].value = "-" 
-    //     document.f1.distrito.options[0].text = "Seleccione Distrito" 
-    // }
     $.ajax({
         url: 'distritos.php?id='+$red,
         method: 'GET',
